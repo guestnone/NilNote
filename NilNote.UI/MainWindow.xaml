@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="NilNote" Height="450" Width="800">
+    <DockPanel LastChildFill="False">
+        <Menu DockPanel.Dock="Top" Height="18">
+            <MenuItem Header="_File">
+                <MenuItem Header="Open notebook..."></MenuItem>
+                <Separator />
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit">
 
-    </Grid>
+            </MenuItem>
+            <MenuItem Header="_Notebook">
+                
+            </MenuItem>
+            <MenuItem Header="_Page">
+                <MenuItem Header="Export page"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <DockPanel>
+            <Grid DockPanel.Dock="Left">
+                <Grid DockPanel.Dock="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+            <Grid DockPanel.Dock="Right">
+            </Grid>
+        </DockPanel>
+        
+
+        <StatusBar  DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Name="ProgramState" />
+            </StatusBarItem>
+        </StatusBar>
+    </DockPanel>
 </Window>
