@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="TextSearchWindow" SizeToContent="Height" Width="300" >
+        Title="Search by text" SizeToContent="Height" Width="300" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
