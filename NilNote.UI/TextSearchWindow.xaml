@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="TextSearchWindow" Height="450" Width="800">
+        Title="TextSearchWindow" SizeToContent="Height" Width="300" >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition ></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
+        <TextBox Grid.Row="0" Grid.Column="0" Margin="0"></TextBox>
+        <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <CheckBox Margin="5"></CheckBox>
+            <Label Content="Search with tags"></Label>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Content="Search" Margin="5"></Button>
+            <Button Content="Cancel" Margin="5"></Button>
+        </StackPanel>
+
     </Grid>
 </Window>

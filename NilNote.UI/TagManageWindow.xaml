@@ -7,6 +7,25 @@
         mc:Ignorable="d"
         Title="TagManageWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Tags"></Label>
+        <ListBox Grid.Row="1"></ListBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Margin="5"></TextBox>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Content="Add" Margin="5"></Button>
+                <Button Content="Delete" Margin="5"></Button>
+                <Button Content="Close" Margin="5"></Button>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </Window>

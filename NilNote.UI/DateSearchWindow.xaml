@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="DateSearchWindow" Height="450" Width="800">
+        Title="DateSearchWindow" SizeToContent="Height" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Search Type" Grid.Row="0" Grid.Column="0"></Label>
+        <Label Content="Start Date" Grid.Row="1" Grid.Column="0"></Label>
+        <Label Content="End Date" Grid.Row="2" Grid.Column="0"></Label>
+
+        <ComboBox Grid.Row="0" Grid.Column="1">
+            <ComboBoxItem Content="Creation Date" IsSelected="True"></ComboBoxItem>
+            <ComboBoxItem Content="Last Edit Date" IsSelected="True"></ComboBoxItem>
+        </ComboBox>
+        <DatePicker Grid.Row="1" Grid.Column="1"></DatePicker>
+        <DatePicker Grid.Row="2" Grid.Column="1"></DatePicker>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Content="Search" Margin="5"></Button>
+            <Button Content="Cancel" Margin="5"></Button>
+        </StackPanel>
+
     </Grid>
 </Window>
