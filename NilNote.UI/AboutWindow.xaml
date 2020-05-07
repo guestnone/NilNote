@@ -3,10 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="450" Width="800">
+        Title="AboutWindow" SizeToContent="WidthAndHeight">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="Resources/NNLogo.png" Stretch="Fill" HorizontalAlignment="Center"
+               VerticalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Width="256"
+       Height="320"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalAlignment="Left" FontSize="30" Content="NilNote"></Label>
+            <Label Grid.Row="1" HorizontalAlignment="Left" FontSize="20" Content="Version 0.0.0"></Label>
+            <Label Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Content="Copyright (C) 2020 Patrick Rećko and Dominik Krajewski"></Label>
+            <Label Grid.Row="3" HorizontalAlignment="Left" FontSize="20" Content="All rights reserved"></Label>
+            <Button Content="Close" Grid.Row="4" HorizontalAlignment="Right" Margin="5"></Button>
+        </Grid>
     </Grid>
 </Window>

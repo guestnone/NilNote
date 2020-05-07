@@ -20,7 +20,7 @@
         <TextBox Grid.Row="0" Grid.Column="0" Margin="0"></TextBox>
         <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <CheckBox Margin="5"></CheckBox>
-            <Label Content="Search with tags"></Label>
+            <Label Content="Search within tags"></Label>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
             <Button Content="Search" Margin="5"></Button>

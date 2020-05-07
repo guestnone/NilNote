@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="SearchResultsWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            
+            <Label Content="Results" Grid.Row="1"></Label>
+            <DataGrid  Grid.Row="2"></DataGrid>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="Preview" Grid.Row="0"></Label>
+            <Button Content="Close" Grid.Row="2" HorizontalAlignment="Right" Margin="5"></Button>
+        </Grid>
+        
         
     </Grid>
 </Window>

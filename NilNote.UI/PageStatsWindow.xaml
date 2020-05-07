@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="PageStatsWindow" Height="450" Width="800">
+        Title="PageStatsWindow" SizeToContent="Height" Width="300">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
+        <Label Content="Name" Grid.Row="0" Grid.Column="0"></Label>
+        <Label Content="Date Of Creation" Grid.Row="1" Grid.Column="0"></Label>
+        <Label Content="Date Of last modification" Grid.Row="2" Grid.Column="0"></Label>
+        <Label Content="Language" Grid.Row="3" Grid.Column="0"></Label>
+        <Label Content="Syntax" Grid.Row="4" Grid.Column="0"></Label>
+        <Separator Grid.Row="5" Grid.Column="0"></Separator>
+        <Separator Grid.Row="5" Grid.Column="1"></Separator>
+        <Label Content="Number of pages" Grid.Row="6" Grid.Column="0"></Label>
+        <Label Content="Word count" Grid.Row="7" Grid.Column="0"></Label>
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Content="Exit" Margin="5"></Button>
+            <Button Content="Export stats to file" Margin="5"></Button>
+        </StackPanel>
     </Grid>
 </Window>

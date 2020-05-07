@@ -24,5 +24,11 @@ namespace NilNote.UI
         {
             InitializeComponent();
         }
+
+        private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new AboutWindow();
+            dialog.Show();
+        }
     }
 }

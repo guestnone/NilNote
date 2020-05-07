@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
         mc:Ignorable="d"
-        Title="PageExportWindow" Height="450" Width="800">
+        Title="Export" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Export Format" Grid.Row="0" Grid.Column="0"></Label>
+        <Label Content="Export All" Grid.Row="1" Grid.Column="0"></Label>
+        <Label Content="Pages to Export" Grid.Row="2" Grid.Column="0"></Label>
+        <DataGrid  Grid.Row="2" Grid.Column="2"></DataGrid>
+        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Content="Export" Margin="5"></Button>
+            <Button Content="Cancel" Margin="5"></Button>
+        </StackPanel>
     </Grid>
 </Window>

@@ -33,7 +33,7 @@
                 <MenuItem Header="Export page"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Help">
-                <MenuItem Header="About"></MenuItem>
+                <MenuItem Header="About" Click="AboutMenuItem_Click"></MenuItem>
             </MenuItem>
         </Menu>
 
