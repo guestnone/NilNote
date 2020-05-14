@@ -28,7 +28,7 @@
             <Label Grid.Row="1" HorizontalAlignment="Left" FontSize="20" Content="Version 0.0.0"></Label>
             <Label Grid.Row="2" HorizontalAlignment="Left" FontSize="20" Content="Copyright (C) 2020 Patrick Rećko and Dominik Krajewski"></Label>
             <Label Grid.Row="3" HorizontalAlignment="Left" FontSize="20" Content="All rights reserved"></Label>
-            <Button Content="Close" Grid.Row="4" HorizontalAlignment="Right" Margin="5"></Button>
+            <Button Content="Close" Grid.Row="4" HorizontalAlignment="Right" Margin="5" Click="Button_Click"></Button>
         </Grid>
     </Grid>
 </Window>
