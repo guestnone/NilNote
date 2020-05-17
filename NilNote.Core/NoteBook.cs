@@ -13,6 +13,8 @@ namespace NilNote.Core
     {
         public string Name { get; set; }
         public string Creator { get; set; }
+        public Language DefaultLanguage { get; set; }
+        public NoteBookPageMarkupType DefaultMarkupType { get; set; }
         public DateTime DateOfCreation { get; set; }
         public DateTime DateOfLastOpen { get; set; }
     }
