@@ -30,6 +30,7 @@
             </Grid.RowDefinitions>
             <Label Content="Preview" Grid.Row="0"></Label>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="2">
+                <Button Content="Page Settings"  Margin="5"></Button>
                 <Button Content="Save" HorizontalAlignment="Right" Margin="5"></Button>
                 <Button Content="Cancel" HorizontalAlignment="Right" Margin="5"></Button>
             </StackPanel>
