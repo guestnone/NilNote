@@ -3,7 +3,15 @@ using System.Collections.Generic;
 
 namespace NilNote.Core
 {
-    public enum NoteBookPageMarkupType
+
+	public enum Language
+	{
+        English,
+        Polish,
+        Japanese
+    };
+
+	public enum NoteBookPageMarkupType
     {
         PlainText,
         Markdown
@@ -11,6 +19,7 @@ namespace NilNote.Core
 
     public struct NoteBookDetails
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Creator { get; set; }
         public Language DefaultLanguage { get; set; }
@@ -20,7 +29,8 @@ namespace NilNote.Core
     }
 
     public struct NoteBookPage
-    { 
+    {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string BookPath { get; set; }
         public DateTime DateOfCreation { get; set; }
@@ -31,8 +41,7 @@ namespace NilNote.Core
 
     public class NoteBook
     {
-
-        public Guid MUuid { get; set; }
+        public int Id { get; set; }
         public NoteBookDetails MDetails { get; set; }
         public List<NoteBookPage> MPages { get; set; }
     }

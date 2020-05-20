@@ -11,25 +11,27 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Label Content="Name" Grid.Row="0" Grid.Column="0"></Label>
+        <TextBox Name="TextBox" Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
 
-        <Label Content="Default Language" Grid.Row="0" Grid.Column="0"></Label>
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5">
-            <ComboBoxItem Content="Engilsh" IsSelected="True"></ComboBoxItem>
+        <Label Content="Default Language" Grid.Row="1" Grid.Column="0"></Label>
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="5"  Name="LanguageComboBox">
         </ComboBox>
-        <Label Content="Default Syntax" Grid.Row="1" Grid.Column="0"></Label>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="5">
-            <ComboBoxItem Content="Plain text" IsSelected="True"></ComboBoxItem>
-            <ComboBoxItem Content="Markdown" IsSelected="True"></ComboBoxItem>
+
+        <Label Content="Default Syntax" Grid.Row="2" Grid.Column="0"></Label>
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="5" Name="SyntaxComboBox">
+
         </ComboBox>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Save" Margin="5"></Button>
-            <Button Content="Cancel" Margin="5"></Button>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Name="SaveButton" Content="Save" Margin="5" Click="SaveButton_Click"></Button>
+            <Button Name="CancelButton" Content="Cancel" Margin="5" Click="Button_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

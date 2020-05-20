@@ -4,6 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NilNote.UI"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:editing="clr-namespace:ICSharpCode.AvalonEdit.Editing;assembly=ICSharpCode.AvalonEdit"
+        xmlns:rendering="clr-namespace:ICSharpCode.AvalonEdit.Rendering;assembly=ICSharpCode.AvalonEdit"
         mc:Ignorable="d"
         Title="Edit" Height="450" Width="800">
     <Grid>
@@ -19,7 +22,10 @@
             </Grid.RowDefinitions>
 
             <Label Content="Text" Grid.Row="0"></Label>
-            <TextBox Grid.Row="2" Text="Lorem ipsum etc." TextWrapping="Wrap" ></TextBox>
+            <avalonEdit:TextEditor Name="Editor" Grid.Row="1" Text="Lorem ipsum etc" Background="White" Foreground="Black" TextChanged="Editor_OnTextChanged">
+
+            </avalonEdit:TextEditor>
+
         </Grid>
         
         <Grid Grid.Column="1">
@@ -29,10 +35,11 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Content="Preview" Grid.Row="0"></Label>
+            <ContentControl x:Name="ContentControl" Grid.Row="1" Margin="10,0,10,10"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="2">
-                <Button Content="Page Settings"  Margin="5"></Button>
-                <Button Content="Save" HorizontalAlignment="Right" Margin="5"></Button>
-                <Button Content="Cancel" HorizontalAlignment="Right" Margin="5"></Button>
+                <Button  Name="PageSettingsButton" Content="Page Settings"  Margin="5" Click="PageSettingsButton_Click"></Button>
+                <Button Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="5" Click="SaveButton_Click"></Button>
+                <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="5" Click="CancelButton_Click"></Button>
             </StackPanel>
         </Grid>
 
