@@ -20,19 +20,18 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Name" Grid.Row="0" Grid.Column="0"></Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
+        <TextBox Name="NameTextBox" Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
         <Label Content="Language" Grid.Row="1" Grid.Column="0"></Label>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="5">
-            <ComboBoxItem Content="Engilsh" IsSelected="True"></ComboBoxItem>
+        <ComboBox Name="LanguageComboBox" Grid.Row="1" Grid.Column="1" Margin="5">
+
         </ComboBox>
         <Label Content="Syntax" Grid.Row="2" Grid.Column="0"></Label>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="5">
-            <ComboBoxItem Content="Plain text" IsSelected="True"></ComboBoxItem>
-            <ComboBoxItem Content="Markdown" IsSelected="True"></ComboBoxItem>
+        <ComboBox Name="SyntaxComboBox" Grid.Row="2" Grid.Column="1" Margin="5">
+
         </ComboBox>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Save" Margin="5"></Button>
-            <Button Content="Cancel" Margin="5"></Button>
+            <Button Name="SaveButton" Content="Save" Margin="5" Click="SaveButton_Click"></Button>
+            <Button Name="CancelButton" Content="Cancel" Margin="5" Click="CancelButton_Click"></Button>
         </StackPanel>
     </Grid>
 </Window>

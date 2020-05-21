@@ -75,7 +75,14 @@ namespace NilNote.UI
 
         private void PageSettingsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var dialog = new PageSettingsWindow(mPage);
+            dialog.ShowDialog();
+            if(dialog.IsSave)
+            {
+                mPage.Name = dialog.EditedPage.Name;
+                mPage.MarkupType = dialog.EditedPage.MarkupType;
+                mPage.Language = dialog.EditedPage.Language;
+            }
         }
     }
 }

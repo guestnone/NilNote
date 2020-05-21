@@ -54,9 +54,9 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <Button Content="Add" Margin="5"></Button>
-                    <Button Content="Remove" Margin="5"></Button>
-                    <Button Content="Page Details" Margin="5"></Button>
+                    <Button Name="AddPageButton" Content="Add" Margin="5" Click="AddPageButton_Click"></Button>
+                    <Button Name="RemovePageButton" Content="Remove" Margin="5"></Button>
+                    <Button Name="PageDetailsButton" Content="Page Details" Margin="5" Click="PageDetailsButton_Click"></Button>
                 </StackPanel>
                 <Label Content="Conspect" Grid.Row="1"></Label>
                 <ListBox Name="PagesListBox" Grid.Row="2" Margin="10,0,10,10" SelectionMode="Single" SelectionChanged="PagesListBox_OnSelectionChanged" MouseDoubleClick="PagesListBox_OnMouseDoubleClick">

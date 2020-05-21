@@ -30,6 +30,8 @@ namespace NilNote.UI
             InitializeComponent();
             PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
             ContentControl.Content = new NoSelectUserControl();
+            PageDetailsButton.IsEnabled = false;
+            RemovePageButton.IsEnabled = false;
         }
 
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
@@ -43,6 +45,8 @@ namespace NilNote.UI
             if (PagesListBox.SelectedItem == null)
             {
                 ContentControl.Content = new NoSelectUserControl();
+                PageDetailsButton.IsEnabled = false;
+                RemovePageButton.IsEnabled = false;
                 return;
             }
 
@@ -57,6 +61,8 @@ namespace NilNote.UI
                     ContentControl.Content = new PlainTextPreviewUserControl(((NoteBookPage)PagesListBox.SelectedItem).Text);
                     break;
             }
+            PageDetailsButton.IsEnabled = true;
+            RemovePageButton.IsEnabled = true;
         }
 
         private void AlwaysExecuteDetector(object sender, CanExecuteRoutedEventArgs e)
@@ -92,6 +98,30 @@ namespace NilNote.UI
                     PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
                     PagesListBox.SelectedIndex = selItem;
                 }
+            }
+        }
+
+        private void PageDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PagesListBox.SelectedItem == null)
+            {
+                return;
+            }
+            var dialog = new PageStatsWindow((NoteBookPage)PagesListBox.SelectedItem);
+            dialog.Show();
+        }
+
+        private void AddPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new NewPageWindow();
+            dialog.ShowDialog();
+            if(dialog.Add)
+            {
+                var selItem = PagesListBox.SelectedIndex;
+                PagesListBox.SelectedIndex = -1;
+                NoteBookManager.Instance.InsertNewPage(dialog.Page);
+                PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
+                PagesListBox.SelectedIndex = selItem;
             }
         }
     }

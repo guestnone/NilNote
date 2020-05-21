@@ -16,7 +16,6 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -31,11 +30,19 @@
         <Label Content="Syntax" Grid.Row="4" Grid.Column="0"></Label>
         <Separator Grid.Row="5" Grid.Column="0"></Separator>
         <Separator Grid.Row="5" Grid.Column="1"></Separator>
-        <Label Content="Number of pages" Grid.Row="6" Grid.Column="0"></Label>
-        <Label Content="Word count" Grid.Row="7" Grid.Column="0"></Label>
-        <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Exit" Margin="5"></Button>
-            <Button Content="Export stats to file" Margin="5"></Button>
+        <Label Content="Word count" Grid.Row="6" Grid.Column="0"></Label>
+
+        <Label Name="NameValue" Grid.Row="0" Grid.Column="1"></Label>
+        <Label Name="DateOfCreationValue" Grid.Row="1" Grid.Column="1"></Label>
+        <Label Name="DateOfLastModValue" Grid.Row="2" Grid.Column="1"></Label>
+        <Label Name="LanguageValue" Grid.Row="3" Grid.Column="1"></Label>
+        <Label Name="SyntaxValue"  Grid.Row="4" Grid.Column="1"></Label>
+        <Label Name="WordCountValue"  Grid.Row="6" Grid.Column="1"></Label>
+
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Name="ExitButton" Content="Exit" Margin="5" Click="ExitButton_Click"></Button>
+            <Button Name="StatsToFileButton" Content="Export stats to file" Margin="5"></Button>
         </StackPanel>
     </Grid>
 </Window>

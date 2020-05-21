@@ -28,6 +28,7 @@ namespace NilNote.UI
         private bool mIsAdd = false;
         private NoteBookPage mPage = new NoteBookPage();
 
+        public NoteBookPage Page => mPage;
         public bool Add => mIsAdd;
 
         public NewPageWindow()
@@ -47,16 +48,24 @@ namespace NilNote.UI
             mPage.DateOfCreation = DateTime.Now;
             mPage.DateOfLastModification = DateTime.Now;
             mPage.MarkupType = (NoteBookPageMarkupType)SyntaxComboBox.SelectedItem;
+            mPage.Language = (Language)LanguageComboBox.SelectedItem;
             return NewPageValidationResult.Ok;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
+            if(CreatePageSetting() == NewPageValidationResult.ErrNoName)
+            {
+                MessageBox.Show("Name of the Notebook can't be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            mIsAdd = true;
+            this.Close();
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NilNote.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,9 +18,20 @@ namespace NilNote.UI
     /// </summary>
     public partial class PageStatsWindow : Window
     {
-        public PageStatsWindow()
+        public PageStatsWindow(NoteBookPage page)
         {
             InitializeComponent();
+            NameValue.Content = page.Name;
+            DateOfCreationValue.Content = page.DateOfCreation;
+            DateOfLastModValue.Content = page.DateOfLastModification;
+            LanguageValue.Content = page.Language;
+            SyntaxValue.Content = page.MarkupType;
+            WordCountValue.Content = Convert.ToString(Utility.CountWords(page.Text));
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

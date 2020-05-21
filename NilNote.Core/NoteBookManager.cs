@@ -24,7 +24,7 @@ namespace NilNote.Core
         private readonly string NBPagesCollectionName = "nbPages";
         ////////
 
-        private void InsertFirstTimeUserPages()
+        private void InsertFirstTimeUserPages(Language lang)
         {
             NoteBookPage page = new NoteBookPage();
             page.BookPath = "";
@@ -33,6 +33,7 @@ namespace NilNote.Core
             page.DateOfLastModification = DateTime.Now;
             page.Text = StaticStuff.GetStartText();
             page.Name = "Your First Page";
+            page.Language = lang;
             InsertNewPage(page);
         }
 
@@ -74,7 +75,7 @@ namespace NilNote.Core
 
             var nbDetailsCollection = mDatabase.GetCollection<NoteBookDetails>(NBDetailsCollectionName);
             nbDetailsCollection.Insert(details);
-            InsertFirstTimeUserPages();
+            InsertFirstTimeUserPages(details.DefaultLanguage);
         }
 
         public bool InsertNewPage(NoteBookPage page)
@@ -113,20 +114,24 @@ namespace NilNote.Core
             foreach (var page in list)
             {
                 var text = page.Text;
-                while (index < text.Length && char.IsWhiteSpace(text[index]))
-                    index++;
-
-                while (index < text.Length)
+                index = 0;
+                if (!String.IsNullOrEmpty(text))
                 {
-                    // check if current char is part of a word
-                    while (index < text.Length && !char.IsWhiteSpace(text[index]))
-                        index++;
-
-                    wordCount++;
-
-                    // skip whitespace until next word
                     while (index < text.Length && char.IsWhiteSpace(text[index]))
                         index++;
+
+                    while (index < text.Length)
+                    {
+                        // check if current char is part of a word
+                        while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                            index++;
+
+                        wordCount++;
+
+                        // skip whitespace until next word
+                        while (index < text.Length && char.IsWhiteSpace(text[index]))
+                            index++;
+                    }
                 }
             }
 

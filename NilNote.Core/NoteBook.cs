@@ -36,6 +36,7 @@ namespace NilNote.Core
         public DateTime DateOfCreation { get; set; }
         public DateTime DateOfLastModification { get; set; }
         public NoteBookPageMarkupType MarkupType { get; set; }
+        public Language Language { get; set; }
         public string Text { get; set; }
     }
 
