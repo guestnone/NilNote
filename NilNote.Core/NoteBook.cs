@@ -17,6 +17,12 @@ namespace NilNote.Core
         Markdown
     }
 
+    public struct Tag
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public struct NoteBookDetails
     {
         public int Id { get; set; }

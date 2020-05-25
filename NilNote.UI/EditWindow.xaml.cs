@@ -46,6 +46,11 @@ namespace NilNote.UI
 
         private void Editor_OnTextChanged(object? sender, EventArgs e)
         {
+            if (sender is null)
+            {
+                throw new ArgumentNullException(nameof(sender));
+            }
+
             if (ContentControl == null) return;
 
             switch (mPage.MarkupType)

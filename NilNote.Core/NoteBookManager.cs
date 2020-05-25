@@ -20,8 +20,8 @@ namespace NilNote.Core
 
         ////////
         private readonly string NBDetailsCollectionName = "nbDetails";
-
         private readonly string NBPagesCollectionName = "nbPages";
+        private readonly string NBTagsCollectionName = "nbTags";
         ////////
 
         private void InsertFirstTimeUserPages(Language lang)
@@ -149,6 +149,44 @@ namespace NilNote.Core
             }
             return list.ElementAt(0);
 
+        }
+
+        public IEnumerable<Tag> GetTags()
+        {
+            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            return collection.FindAll();
+        }
+
+        public bool TagExist(Tag tag)
+        {
+            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            var ifFound = collection.Query().Where(x => x.Name.StartsWith(tag.Name));
+            if (ifFound.Count() != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AddTag(Tag tag)
+        {
+            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            if (TagExist(tag))
+            {
+                return false;
+            }
+            collection.Insert(tag);
+            return true;
+        }
+
+        public bool UpdateTag(Tag tag)
+        {
+            return mDatabase.GetCollection<Tag>(NBTagsCollectionName).Update(tag);
+        }
+
+        public bool RemoveTag(Tag tag)
+        {
+            return false;
         }
 
     }

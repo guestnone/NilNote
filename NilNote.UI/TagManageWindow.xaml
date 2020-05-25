@@ -13,17 +13,28 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Tags"></Label>
-        <ListBox Grid.Row="1"></ListBox>
+        <ListBox Name="TagsListBox" Grid.Row="1" SelectionMode="Single" SelectionChanged="TagsListBox_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Margin="5"></TextBox>
+            <TextBox Name="NewTagTextBox" Grid.Column="0" Margin="5"></TextBox>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <Button Content="Add" Margin="5"></Button>
-                <Button Content="Delete" Margin="5"></Button>
-                <Button Content="Close" Margin="5"></Button>
+                <Button Name="AddButton" Content="Add" Margin="5" Click="AddButton_Click"></Button>
+                <Button Name="DeleteButton" Content="Delete" Margin="5" Click="DeleteButton_Click"></Button>
+                <Button Name="CloseButton" Content="Close" Margin="5" Click="CloseButton_Click"></Button>
             </StackPanel>
             
         </Grid>
