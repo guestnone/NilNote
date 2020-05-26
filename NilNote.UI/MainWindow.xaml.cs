@@ -25,6 +25,10 @@ namespace NilNote.UI
             "StatisticsCommand",
             typeof(MainWindow));
 
+        public static RoutedUICommand TagsCommand = new RoutedUICommand("Tags command",
+            "TagsCommand",
+            typeof(MainWindow));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -123,6 +127,12 @@ namespace NilNote.UI
                 PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
                 PagesListBox.SelectedIndex = selItem;
             }
+        }
+
+        private void TagsCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var dialog = new TagManageWindow();
+            dialog.Show();
         }
     }
 }

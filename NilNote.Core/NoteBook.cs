@@ -1,8 +1,16 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 using System.Collections.Generic;
 
 namespace NilNote.Core
 {
+
+    static class NotebookDbNames
+    {
+        public static string NBDetailsCollectionName = "nbDetails";
+        public static string NBPagesCollectionName = "nbPages";
+        public static string NBTagsCollectionName = "nbTags";
+    }
 
 	public enum Language
 	{
@@ -43,6 +51,9 @@ namespace NilNote.Core
         public DateTime DateOfLastModification { get; set; }
         public NoteBookPageMarkupType MarkupType { get; set; }
         public Language Language { get; set; }
+
+        [BsonRef("nbTags")]
+        public List<Tag> Tags { get; set; }
         public string Text { get; set; }
     }
 

@@ -10,5 +10,7 @@ namespace NilNote.Core
         {
             return "## This is your first NilNote Page\r\n\r\nPlease edit me or delete if you don't need me";
         }
+
+
     }
 }

@@ -18,12 +18,6 @@ namespace NilNote.Core
 
         public bool HasExistingDB { get => mHasExistingDb; }
 
-        ////////
-        private readonly string NBDetailsCollectionName = "nbDetails";
-        private readonly string NBPagesCollectionName = "nbPages";
-        private readonly string NBTagsCollectionName = "nbTags";
-        ////////
-
         private void InsertFirstTimeUserPages(Language lang)
         {
             NoteBookPage page = new NoteBookPage();
@@ -57,7 +51,7 @@ namespace NilNote.Core
             if (File.Exists(mDbPath))
             {
                 mDatabase = new LiteDatabase(mDbPath);
-                if (mDatabase.GetCollectionNames().Contains(NBDetailsCollectionName))
+                if (mDatabase.GetCollectionNames().Contains(NotebookDbNames.NBDetailsCollectionName))
                 {
                     mHasExistingDb = true;
                     return;
@@ -73,14 +67,14 @@ namespace NilNote.Core
                 mDatabase = new LiteDatabase(mDbPath);
             }
 
-            var nbDetailsCollection = mDatabase.GetCollection<NoteBookDetails>(NBDetailsCollectionName);
+            var nbDetailsCollection = mDatabase.GetCollection<NoteBookDetails>(NotebookDbNames.NBDetailsCollectionName);
             nbDetailsCollection.Insert(details);
             InsertFirstTimeUserPages(details.DefaultLanguage);
         }
 
         public bool InsertNewPage(NoteBookPage page)
         {
-            var collection = mDatabase.GetCollection<NoteBookPage>(NBPagesCollectionName);
+            var collection = mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName);
             var ifFound = collection.Query().Where(x => x.Name.StartsWith(page.Name));
             if (ifFound.Count() != 0)
             {
@@ -93,24 +87,24 @@ namespace NilNote.Core
 
         public IEnumerable<NoteBookPage> GetPages()
         {
-            var collection = mDatabase.GetCollection<NoteBookPage>(NBPagesCollectionName);
+            var collection = mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName);
             return collection.FindAll();
         }
 
         public bool UpdatePage(NoteBookPage page)
         {
-            return mDatabase.GetCollection<NoteBookPage>(NBPagesCollectionName).Update(page);
+            return mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName).Update(page);
         }
 
         public int GetPageNumber()
         {
-            return mDatabase.GetCollection<NoteBookPage>(NBPagesCollectionName).Count();
+            return mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName).Count();
         }
 
         public int GetNoteBookWordCount()
         {
             int wordCount = 0, index = 0;
-            var list = mDatabase.GetCollection<NoteBookPage>(NBPagesCollectionName).FindAll();
+            var list = mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName).FindAll();
             foreach (var page in list)
             {
                 var text = page.Text;
@@ -140,7 +134,7 @@ namespace NilNote.Core
 
         public NoteBookDetails GetDetails()
         {
-            var collection = mDatabase.GetCollection<NoteBookDetails>(NBDetailsCollectionName);
+            var collection = mDatabase.GetCollection<NoteBookDetails>(NotebookDbNames.NBDetailsCollectionName);
             var list = collection.FindAll();
             if (list.Count() != 1)
             {
@@ -153,13 +147,13 @@ namespace NilNote.Core
 
         public IEnumerable<Tag> GetTags()
         {
-            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
             return collection.FindAll();
         }
 
         public bool TagExist(Tag tag)
         {
-            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
             var ifFound = collection.Query().Where(x => x.Name.StartsWith(tag.Name));
             if (ifFound.Count() != 0)
             {
@@ -170,7 +164,7 @@ namespace NilNote.Core
 
         public bool AddTag(Tag tag)
         {
-            var collection = mDatabase.GetCollection<Tag>(NBTagsCollectionName);
+            var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
             if (TagExist(tag))
             {
                 return false;
@@ -181,12 +175,37 @@ namespace NilNote.Core
 
         public bool UpdateTag(Tag tag)
         {
-            return mDatabase.GetCollection<Tag>(NBTagsCollectionName).Update(tag);
+            return mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName).Update(tag);
         }
 
         public bool RemoveTag(Tag tag)
         {
-            return false;
+            if (!TagExist(tag))
+            {
+                return false;
+            }
+
+            // Remove all connections to the tag from pages
+            List<NoteBookPage> toUpdate = new List<NoteBookPage>();
+            var pages = GetPages();
+            foreach (var page in pages)
+            {
+                if (page.Tags != null)
+                {
+                    if (page.Tags.Contains(tag))
+                    {
+                        page.Tags.Remove(tag);
+                        toUpdate.Add(page);
+                    }
+                }
+            }
+            foreach (var page in toUpdate)
+            {
+                UpdatePage(page);
+            }
+
+            var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
+            return collection.Delete(tag.Id);
         }
 
     }

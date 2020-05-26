@@ -1,0 +1,27 @@
+﻿<Window x:Class="NilNote.UI.EditTagWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NilNote.UI"
+        mc:Ignorable="d"
+        Title="Rename Tag" SizeToContent="Height" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Content="Name" Grid.Row="0" Grid.Column="0"></Label>
+        <TextBox Name="TextBox" Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button Name="SaveButton" Content="Save" Margin="5" Click="SaveButton_Click"></Button>
+            <Button Name="CancelButton" Content="Cancel" Margin="5" Click="CancelButton_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

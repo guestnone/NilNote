@@ -9,6 +9,7 @@
     
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:MainWindow.StatisticsCommand}" CanExecute="AlwaysExecuteDetector" Executed="StatisticsCommand_Executed" />
+        <CommandBinding Command="{x:Static local:MainWindow.TagsCommand}" CanExecute="AlwaysExecuteDetector" Executed="TagsCommand_Executed" />
     </Window.CommandBindings>
 
     <Grid>
@@ -32,6 +33,7 @@
                     <MenuItem Header="By date"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Statistics" Command="{x:Static local:MainWindow.StatisticsCommand}"></MenuItem>
+                <MenuItem Header="Tags" Command="{x:Static local:MainWindow.TagsCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Page">
                 <MenuItem Header="Export page"></MenuItem>

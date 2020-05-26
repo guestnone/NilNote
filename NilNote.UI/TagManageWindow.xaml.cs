@@ -50,23 +50,48 @@ namespace NilNote.UI
             {
                 MessageBox.Show("Error on adding tag!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            TagsListBox.ItemsSource = NoteBookManager.Instance.GetTags();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TagsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (TagsListBox.SelectedIndex == -1)
             {
                 return;
             }
-            Tag tag = (Tag)TagsListBox.SelectedItem;
-            TagsListBox.SelectedIndex = -1;
-            //NoteBookManager.Instance.RemoveTag(tag);
+            if (MessageBox.Show("Are you sure?", "Delete tag", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Tag tag = (Tag)TagsListBox.SelectedItem;
+                TagsListBox.SelectedIndex = -1;
+                NoteBookManager.Instance.RemoveTag(tag);
+                TagsListBox.ItemsSource = NoteBookManager.Instance.GetTags();
+            }
+        }
 
+        private void TagsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void TagsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (TagsListBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            var dialog = new EditTagWindow((Tag)TagsListBox.SelectedItem);
+            dialog.ShowDialog();
+            if (dialog.Change)
+            {
+                var tag = dialog.NbTag;
+                // Check if the name already exists
+                if (NoteBookManager.Instance.TagExist(tag))
+                {
+                    MessageBox.Show("Tag already exists!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                NoteBookManager.Instance.UpdateTag(tag);
+            }
         }
     }
 }
