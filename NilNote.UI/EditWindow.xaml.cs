@@ -32,11 +32,11 @@ namespace NilNote.UI
             mPage = page;
             switch (page.MarkupType)
             {
-                case NoteBookPageMarkupType.PlainText:
-                    ContentControl.Content = new PlainTextPreviewUserControl(page.Text);
-                    break;
+                
                 case NoteBookPageMarkupType.Markdown:
+                    ContentControl.Content = new MarkdownPreviewUserControl(page.Text);
                     break;
+                case NoteBookPageMarkupType.PlainText:
                 default:
                     ContentControl.Content = new PlainTextPreviewUserControl(page.Text);
                     break;
@@ -57,6 +57,7 @@ namespace NilNote.UI
             {
 
                 case NoteBookPageMarkupType.Markdown:
+                    ((MarkdownPreviewUserControl)ContentControl.Content).Input = Editor.Text;
                     break;
                 case NoteBookPageMarkupType.PlainText:
                 default:

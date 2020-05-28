@@ -60,6 +60,7 @@ namespace NilNote.UI
                     ContentControl.Content = new PlainTextPreviewUserControl(((NoteBookPage)PagesListBox.SelectedItem).Text);
                     break;
                 case NoteBookPageMarkupType.Markdown:
+                    ContentControl.Content = new MarkdownPreviewUserControl(((NoteBookPage)PagesListBox.SelectedItem).Text);
                     break;
                 default:
                     ContentControl.Content = new PlainTextPreviewUserControl(((NoteBookPage)PagesListBox.SelectedItem).Text);

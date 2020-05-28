@@ -25,6 +25,14 @@ namespace NilNote.Core
         Markdown
     }
 
+    public enum NoteBookExportFormat
+    {
+        HTML,
+        PlainText,
+        PDF
+    }
+
+
     public struct Tag
     {
         public int Id { get; set; }
