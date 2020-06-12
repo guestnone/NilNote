@@ -24,7 +24,7 @@
         <Label Content="Export Format" Grid.Row="0" Grid.Column="0"></Label>
         <ComboBox Name="FormatTypeComboBox" Grid.Row="0" Grid.Column="1" Margin="5"></ComboBox>
         <Label Content="Export All" Grid.Row="1" Grid.Column="0"></Label>
-        <CheckBox x:Name="ExportAllCheckBox" Grid.Row="1" Grid.Column="1" Margin="5" IsEnabledChanged="ExportAllCheckBox_IsEnabledChanged"></CheckBox>
+        <CheckBox x:Name="ExportAllCheckBox" Grid.Row="1" Grid.Column="1" Margin="5" Checked="ExportAllCheckBox_Checked" Unchecked="ExportAllCheckBox_Checked"></CheckBox>
         <Label Content="Pages to Export" Grid.Row="2" Grid.Column="0"></Label>
 
         <ListBox Name="PagesListBox" Grid.Row="2" Grid.Column="2" Margin="10,0,10,10" SelectionMode="Single">
@@ -40,7 +40,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Row="8" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Name="ExportButton" Content="Export" Margin="5"></Button>
+            <Button Name="ExportButton" Content="Export" Margin="5" Click="ExportButton_Click"></Button>
             <Button Name="CancelButton" Content="Cancel" Margin="5" Click="CancelButton_Click"></Button>
         </StackPanel>
     </Grid>

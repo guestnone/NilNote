@@ -1,4 +1,6 @@
-﻿using NilNote.Core;
+﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using NilNote.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,7 @@ namespace NilNote.UI
             mPages = pages;
             FormatTypeComboBox.ItemsSource = Enum.GetValues(typeof(NoteBookExportFormat)).Cast<NoteBookExportFormat>();
             PagesListBox.ItemsSource = mPages;
+            FormatTypeComboBox.SelectedIndex = 0;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -34,7 +37,7 @@ namespace NilNote.UI
             this.Close();
         }
 
-        private void ExportAllCheckBox_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void ExportAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if ((bool)ExportAllCheckBox.IsChecked)
             {
@@ -44,6 +47,46 @@ namespace NilNote.UI
             {
                 PagesListBox.IsEnabled = true;
             }
+        }
+
+        private Exporter GetExporter()
+        {
+
+            if (FormatTypeComboBox.SelectedItem == null)
+            {
+                return new HTMLExporter();
+            }
+            var selected = (NoteBookExportFormat)FormatTypeComboBox.SelectedItem;
+            switch (selected)
+            {
+                case NoteBookExportFormat.PDF:
+                case NoteBookExportFormat.PlainText:
+                    return new PlainTextExporter();
+                case NoteBookExportFormat.HTML:
+                default:
+                    return new HTMLExporter();
+            }
+        }
+
+        private void ExportButton_Click(object sender, RoutedEventArgs e)
+        {
+            var openDirDialog = new CommonOpenFileDialog();
+            openDirDialog.IsFolderPicker = true;
+            if (openDirDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                var exporter = GetExporter();
+                exporter.Start(openDirDialog.FileName);
+                if ((bool)ExportAllCheckBox.IsChecked)
+                {
+                    exporter.ExportPages(NoteBookManager.Instance.GetPages().ToList());
+                }
+                else
+                {
+                    exporter.ExportPages(PagesListBox.SelectedItems);
+                }
+                exporter.End();
+            }
+            this.Close();
         }
     }
 }

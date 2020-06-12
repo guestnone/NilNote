@@ -29,6 +29,10 @@ namespace NilNote.UI
             "TagsCommand",
             typeof(MainWindow));
 
+        public static RoutedUICommand ExportCommand = new RoutedUICommand("Export command",
+            "ExportCommand",
+            typeof(MainWindow));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -134,6 +138,12 @@ namespace NilNote.UI
         {
             var dialog = new TagManageWindow();
             dialog.Show();
+        }
+
+        private void ExportCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            PageExportWindow dialog = new PageExportWindow(NoteBookManager.Instance.GetPages().ToList());
+            dialog.ShowDialog();
         }
     }
 }
