@@ -32,6 +32,9 @@ namespace NilNote.UI
         public static RoutedUICommand ExportCommand = new RoutedUICommand("Export command",
             "ExportCommand",
             typeof(MainWindow));
+        public static RoutedUICommand TextSearchCommand = new RoutedUICommand("Text search command",
+            "TextSearchCommand",
+            typeof(MainWindow));
 
         public MainWindow()
         {
@@ -144,6 +147,24 @@ namespace NilNote.UI
         {
             PageExportWindow dialog = new PageExportWindow(NoteBookManager.Instance.GetPages().ToList());
             dialog.ShowDialog();
+        }
+
+        private void TextSearchCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var dialog = new TextSearchWindow();
+            dialog.ShowDialog();
+            if (dialog.DoSearch)
+            {
+                IList<NoteBookPage> results;
+                if (dialog.FindByTag)
+                {
+                    results = NoteBookManager.Instance.TextSearch(dialog.TextToFind, NoteBookSearchMode.Tags);
+                }
+                else
+                {
+                    results = NoteBookManager.Instance.TextSearch(dialog.TextToFind, NoteBookSearchMode.Content);
+                }
+            }
         }
     }
 }

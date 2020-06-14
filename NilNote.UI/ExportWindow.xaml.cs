@@ -59,7 +59,6 @@ namespace NilNote.UI
             var selected = (NoteBookExportFormat)FormatTypeComboBox.SelectedItem;
             switch (selected)
             {
-                case NoteBookExportFormat.PDF:
                 case NoteBookExportFormat.PlainText:
                     return new PlainTextExporter();
                 case NoteBookExportFormat.HTML:

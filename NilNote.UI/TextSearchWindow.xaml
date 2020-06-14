@@ -16,15 +16,15 @@
             <ColumnDefinition ></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <TextBox Grid.Row="0" Grid.Column="0" Margin="0"></TextBox>
+
+        <TextBox Name="ContentToSearchTextBox" Grid.Row="0" Grid.Column="0" Margin="0"></TextBox>
         <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <CheckBox Margin="5"></CheckBox>
+            <CheckBox Name="FindByTagCheckBox" Margin="5"></CheckBox>
             <Label Content="Search within tags"></Label>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Search" Margin="5"></Button>
-            <Button Content="Cancel" Margin="5"></Button>
+            <Button Name="SearchButton" Content="Search" Margin="5" Click="SearchButton_Click"></Button>
+            <Button Name="CancelButton" Content="Cancel" Margin="5" Click="CancelButton_Click"></Button>
         </StackPanel>
 
     </Grid>

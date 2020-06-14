@@ -162,6 +162,17 @@ namespace NilNote.Core
             return false;
         }
 
+        public bool TagExist(string text)
+        {
+            var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
+            var ifFound = collection.Query().Where(x => x.Name.Contains(text));
+            if (ifFound.Count() != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool AddTag(Tag tag)
         {
             var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
@@ -206,6 +217,39 @@ namespace NilNote.Core
 
             var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
             return collection.Delete(tag.Id);
+        }
+
+        public IList<NoteBookPage> TextSearch(string text, NoteBookSearchMode mode)
+        {
+            var pageCollection = mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName);
+            List<NoteBookPage> result = null;
+            switch (mode)
+            {
+                case NoteBookSearchMode.Content:
+                    result = pageCollection.Find(x => x.Text.Contains(text)).ToList();
+                    break;
+                case NoteBookSearchMode.Tags:
+                    var collection = mDatabase.GetCollection<Tag>(NotebookDbNames.NBTagsCollectionName);
+                    var tags = collection.Find(x => x.Name.Contains(text));
+                    result = new List<NoteBookPage>();
+                    foreach (var tag in tags)
+                    {
+                        var pages = pageCollection.Find(x => x.Tags.Contains(tag));
+                        foreach (var page in pages)
+                        {
+                            if (!result.Contains(page))
+                            {
+                                result.Add(page);
+                            }
+                        }
+                    }
+
+                    break;
+                default:
+                    result = new List<NoteBookPage>();
+                    break;
+            }
+            return result;
         }
 
     }

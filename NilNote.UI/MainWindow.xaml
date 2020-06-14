@@ -11,6 +11,7 @@
         <CommandBinding Command="{x:Static local:MainWindow.StatisticsCommand}" CanExecute="AlwaysExecuteDetector" Executed="StatisticsCommand_Executed" />
         <CommandBinding Command="{x:Static local:MainWindow.TagsCommand}" CanExecute="AlwaysExecuteDetector" Executed="TagsCommand_Executed" />
         <CommandBinding Command="{x:Static local:MainWindow.ExportCommand}" CanExecute="AlwaysExecuteDetector" Executed="ExportCommand_Executed" />
+        <CommandBinding Command="{x:Static local:MainWindow.TextSearchCommand}" CanExecute="AlwaysExecuteDetector" Executed="TextSearchCommand_Executed" />
     </Window.CommandBindings>
 
     <Grid>
@@ -27,7 +28,7 @@
             </MenuItem>
             <MenuItem Header="_Notebook">
                 <MenuItem Header="Search...">
-                    <MenuItem Header="By name/tag"></MenuItem>
+                    <MenuItem Header="By name/tag" Command="{x:Static local:MainWindow.TextSearchCommand}"></MenuItem>
                     <MenuItem Header="By date"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Statistics" Command="{x:Static local:MainWindow.StatisticsCommand}"></MenuItem>

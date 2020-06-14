@@ -28,8 +28,13 @@ namespace NilNote.Core
     public enum NoteBookExportFormat
     {
         HTML,
-        PlainText,
-        PDF
+        PlainText
+    }
+
+    public enum NoteBookSearchMode
+    {
+        Content,
+        Tags
     }
 
 

@@ -17,9 +17,28 @@ namespace NilNote.UI
     /// </summary>
     public partial class TextSearchWindow : Window
     {
+        public bool FindByTag { get; set; } = false;
+
+        public bool DoSearch { get; set; } = false;
+
+        public string TextToFind { get; set; } = "";
+
         public TextSearchWindow()
         {
             InitializeComponent();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (FindByTagCheckBox.IsChecked != null) FindByTag = (bool) FindByTagCheckBox.IsChecked;
+            TextToFind = ContentToSearchTextBox.Text;
+            DoSearch = true;
+            this.Close();
         }
     }
 }
