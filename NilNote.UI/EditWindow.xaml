@@ -7,6 +7,8 @@
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         xmlns:editing="clr-namespace:ICSharpCode.AvalonEdit.Editing;assembly=ICSharpCode.AvalonEdit"
         xmlns:rendering="clr-namespace:ICSharpCode.AvalonEdit.Rendering;assembly=ICSharpCode.AvalonEdit"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:spellCheckAvalonEdit="clr-namespace:NilNote.UI.SpellCheckAvalonEdit"
         mc:Ignorable="d"
         Title="Edit" Height="450" Width="800">
     <Grid>
@@ -22,8 +24,10 @@
             </Grid.RowDefinitions>
 
             <Label Content="Text" Grid.Row="0"></Label>
-            <avalonEdit:TextEditor Name="Editor" Grid.Row="1" Text="Lorem ipsum etc" Background="White" Foreground="Black" TextChanged="Editor_OnTextChanged">
-
+            <avalonEdit:TextEditor Name="Editor" Grid.Row="1" Text="Lorem ipsum etc" Background="White" Foreground="Black" TextChanged="Editor_OnTextChanged" FontFamily="Consolas" FontSize="20">
+                <b:Interaction.Behaviors>
+                    <spellCheckAvalonEdit:SpellCheckBehavior />
+                </b:Interaction.Behaviors>
             </avalonEdit:TextEditor>
 
         </Grid>
@@ -37,6 +41,7 @@
             <Label Content="Preview" Grid.Row="0"></Label>
             <ContentControl x:Name="ContentControl" Grid.Row="1" Margin="10,0,10,10"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Grid.Row="2">
+                <Button Name="TagsButton" Content="Tags" Margin="5" Click="TagsButton_OnClick"/>
                 <Button  Name="PageSettingsButton" Content="Page Settings"  Margin="5" Click="PageSettingsButton_Click"></Button>
                 <Button Name="SaveButton" Content="Save" HorizontalAlignment="Right" Margin="5" Click="SaveButton_Click"></Button>
                 <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="5" Click="CancelButton_Click"></Button>

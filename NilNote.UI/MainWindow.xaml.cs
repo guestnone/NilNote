@@ -36,6 +36,10 @@ namespace NilNote.UI
             "TextSearchCommand",
             typeof(MainWindow));
 
+        public static RoutedUICommand DateSearchCommand = new RoutedUICommand("Date search command",
+            "DateSearchCommand",
+            typeof(MainWindow));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +47,7 @@ namespace NilNote.UI
             ContentControl.Content = new NoSelectUserControl();
             PageDetailsButton.IsEnabled = false;
             RemovePageButton.IsEnabled = false;
+            ProgramState.Text = "Ready";
         }
 
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
@@ -109,6 +114,11 @@ namespace NilNote.UI
                     PagesListBox.SelectedIndex = -1;
                     PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
                     PagesListBox.SelectedIndex = selItem;
+
+                    var NbStats = NoteBookManager.Instance.GetDetails();
+                    NbStats.DateOfLastOpen = dialog.Page.DateOfLastModification;
+                    NoteBookManager.Instance.UpdateDetails(NbStats);
+                    ProgramState.Text = "Page updated";
                 }
             }
         }
@@ -134,6 +144,7 @@ namespace NilNote.UI
                 NoteBookManager.Instance.InsertNewPage(dialog.Page);
                 PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
                 PagesListBox.SelectedIndex = selItem;
+                ProgramState.Text = "Page added";
             }
         }
 
@@ -164,6 +175,28 @@ namespace NilNote.UI
                 {
                     results = NoteBookManager.Instance.TextSearch(dialog.TextToFind, NoteBookSearchMode.Content);
                 }
+                var srv = new SearchResultsWindow(results);
+                srv.Show();
+            }
+        }
+
+        private void DateSearchCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var dialog = new DateSearchWindow();
+            dialog.ShowDialog();
+            if (dialog.DoSearch)
+            {
+                IList<NoteBookPage> results;
+                if (dialog.FindByDateOfCreation)
+                {
+                    results = NoteBookManager.Instance.DateSearch(dialog.StartDate, dialog.EndDate, NoteBookDateSearchMode.DateOfCreation);
+                }
+                else
+                {
+                    results = NoteBookManager.Instance.DateSearch(dialog.StartDate, dialog.EndDate, NoteBookDateSearchMode.DateOfLastEdit);
+                }
+                var srv = new SearchResultsWindow(results);
+                srv.Show();
             }
         }
     }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NilNote.Core;
+using NilNote.UI.SpellCheckAvalonEdit;
 
 namespace NilNote.UI
 {
@@ -42,6 +45,8 @@ namespace NilNote.UI
                     break;
             }
             Editor.Text = page.Text;
+            Editor.TextArea.TextView.LineTransformers.Add(new SpellingErrorColorizer());
+            Editor.Language = XmlLanguage.GetLanguage(StaticStuff.ToIETFCode(mPage.Language));
         }
 
         private void Editor_OnTextChanged(object? sender, EventArgs e)
@@ -88,6 +93,16 @@ namespace NilNote.UI
                 mPage.Name = dialog.EditedPage.Name;
                 mPage.MarkupType = dialog.EditedPage.MarkupType;
                 mPage.Language = dialog.EditedPage.Language;
+            }
+        }
+
+        private void TagsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SelectTagWindow(NoteBookManager.Instance.GetTags().ToList(), mPage.Tags);
+            dialog.ShowDialog();
+            if (dialog.IsChanged)
+            {
+                mPage.Tags = dialog.Selected;
             }
         }
     }

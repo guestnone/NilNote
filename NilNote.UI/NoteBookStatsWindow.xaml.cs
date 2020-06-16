@@ -10,7 +10,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using NilNote.Core;
+using SpoiledCat.NiceIO;
 
 namespace NilNote.UI
 {
@@ -37,7 +39,20 @@ namespace NilNote.UI
 
         private void StatsToFileButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Saved Data|*.txt";
+            if (sfd.ShowDialog() == true)
+            {
+                NPath niceIoPath = new NPath(sfd.FileName);
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("Name              : " + NameValueLabel.Content);
+                sb.AppendLine("Date of creation  : " + DateOfCreationValueLabel.Content);
+                sb.AppendLine("Date of Last Edit : " + DateOfLastModValueLabel.Content);
+                sb.AppendLine("Default Language  : " + DefaultLanguageValueLabel.Content);
+                sb.AppendLine("Number of pages   : " + NumOfPagesValueLabel.Content);
+                sb.AppendLine("Word count        : " + WordCountValueLabel.Content);
+                niceIoPath.WriteAllText(sb.ToString());
+            }
         }
     }
 }

@@ -16,7 +16,10 @@ namespace NilNote.Core
         private bool mHasExistingDb = false;
         private LiteDatabase mDatabase;
 
-        public bool HasExistingDB { get => mHasExistingDb; }
+        public bool HasExistingDB
+        {
+            get => mHasExistingDb;
+        }
 
         private void InsertFirstTimeUserPages(Language lang)
         {
@@ -40,6 +43,7 @@ namespace NilNote.Core
                 {
                     mInstance = new NoteBookManager();
                 }
+
                 return mInstance;
             }
         }
@@ -57,6 +61,7 @@ namespace NilNote.Core
                     return;
                 }
             }
+
             mHasExistingDb = false;
         }
 
@@ -80,6 +85,7 @@ namespace NilNote.Core
             {
                 return false;
             }
+
             collection.Insert(page);
             return true;
 
@@ -141,8 +147,14 @@ namespace NilNote.Core
                 // TODO: Handle incorrect number of details
                 return new NoteBookDetails();
             }
+
             return list.ElementAt(0);
 
+        }
+
+        public bool UpdateDetails(NoteBookDetails details)
+        {
+            return mDatabase.GetCollection<NoteBookDetails>(NotebookDbNames.NBDetailsCollectionName).Update(details);
         }
 
         public IEnumerable<Tag> GetTags()
@@ -159,6 +171,7 @@ namespace NilNote.Core
             {
                 return true;
             }
+
             return false;
         }
 
@@ -170,6 +183,7 @@ namespace NilNote.Core
             {
                 return true;
             }
+
             return false;
         }
 
@@ -180,6 +194,7 @@ namespace NilNote.Core
             {
                 return false;
             }
+
             collection.Insert(tag);
             return true;
         }
@@ -210,6 +225,7 @@ namespace NilNote.Core
                     }
                 }
             }
+
             foreach (var page in toUpdate)
             {
                 UpdatePage(page);
@@ -249,8 +265,30 @@ namespace NilNote.Core
                     result = new List<NoteBookPage>();
                     break;
             }
+
             return result;
         }
 
+        public IList<NoteBookPage> DateSearch(DateTime startDate, DateTime endDate, NoteBookDateSearchMode mode)
+        {
+            var pageCollection = mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName);
+            List<NoteBookPage> result = null;
+            switch (mode)
+            {
+                case NoteBookDateSearchMode.DateOfCreation:
+                    result = pageCollection.Find(x =>
+                        (x.DateOfCreation.Date >= startDate.Date && x.DateOfCreation.Date <= endDate)).ToList();
+                    break;
+                case NoteBookDateSearchMode.DateOfLastEdit:
+                    result = pageCollection.Find(x =>
+                        (x.DateOfLastModification.Date >= startDate.Date && x.DateOfLastModification.Date <= endDate)).ToList();
+                    break;
+                default:
+                    result = new List<NoteBookPage>();
+                    break;
+            }
+
+            return result;
+        }
     }
 }

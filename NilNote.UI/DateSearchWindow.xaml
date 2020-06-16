@@ -22,15 +22,13 @@
         <Label Content="Start Date" Grid.Row="1" Grid.Column="0"></Label>
         <Label Content="End Date" Grid.Row="2" Grid.Column="0"></Label>
 
-        <ComboBox Grid.Row="0" Grid.Column="1">
-            <ComboBoxItem Content="Creation Date" IsSelected="True"></ComboBoxItem>
-            <ComboBoxItem Content="Last Edit Date" IsSelected="True"></ComboBoxItem>
+        <ComboBox Name="ComboBox" Grid.Row="0" Grid.Column="1">
         </ComboBox>
-        <DatePicker Grid.Row="1" Grid.Column="1"></DatePicker>
-        <DatePicker Grid.Row="2" Grid.Column="1"></DatePicker>
+        <DatePicker x:Name="DatePickerForStart" Grid.Row="1" Grid.Column="1"></DatePicker>
+        <DatePicker x:Name="DatePickerForEnd" Grid.Row="2" Grid.Column="1"></DatePicker>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Button Content="Search" Margin="5"></Button>
-            <Button Content="Cancel" Margin="5"></Button>
+            <Button Name="SearchButton" Content="Search" Margin="5" Click="SearchButton_Click"></Button>
+            <Button Name="CancelButton" Content="Cancel" Margin="5" Click="CancelButton_Click"></Button>
         </StackPanel>
 
     </Grid>

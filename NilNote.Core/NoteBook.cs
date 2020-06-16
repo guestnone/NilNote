@@ -19,6 +19,7 @@ namespace NilNote.Core
         Japanese
     };
 
+
 	public enum NoteBookPageMarkupType
     {
         PlainText,
@@ -35,6 +36,12 @@ namespace NilNote.Core
     {
         Content,
         Tags
+    }
+
+    public enum NoteBookDateSearchMode
+    {
+        DateOfCreation,
+        DateOfLastEdit
     }
 
 
