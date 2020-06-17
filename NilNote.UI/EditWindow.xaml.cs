@@ -49,6 +49,21 @@ namespace NilNote.UI
             Editor.Language = XmlLanguage.GetLanguage(StaticStuff.ToIETFCode(mPage.Language));
         }
 
+        private void SetPageView()
+        {
+            switch (mPage.MarkupType)
+            {
+
+                case NoteBookPageMarkupType.Markdown:
+                    ContentControl.Content = new MarkdownPreviewUserControl(mPage.Text);
+                    break;
+                case NoteBookPageMarkupType.PlainText:
+                default:
+                    ContentControl.Content = new PlainTextPreviewUserControl(mPage.Text);
+                    break;
+            }
+        }
+
         private void Editor_OnTextChanged(object? sender, EventArgs e)
         {
             if (sender is null)
@@ -70,6 +85,7 @@ namespace NilNote.UI
                     break;
             }
         }
+
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,6 +109,8 @@ namespace NilNote.UI
                 mPage.Name = dialog.EditedPage.Name;
                 mPage.MarkupType = dialog.EditedPage.MarkupType;
                 mPage.Language = dialog.EditedPage.Language;
+                SetPageView();
+                Editor.Language = XmlLanguage.GetLanguage(StaticStuff.ToIETFCode(mPage.Language));
             }
         }
 

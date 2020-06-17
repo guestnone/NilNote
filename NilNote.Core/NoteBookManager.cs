@@ -250,16 +250,20 @@ namespace NilNote.Core
                     result = new List<NoteBookPage>();
                     foreach (var tag in tags)
                     {
-                        var pages = pageCollection.Find(x => x.Tags.Contains(tag));
+                        var pages = pageCollection.FindAll();
                         foreach (var page in pages)
                         {
-                            if (!result.Contains(page))
-                            {
-                                result.Add(page);
-                            }
+                            if (page.Tags != null)
+                                foreach (var pageTag in page.Tags)
+                                {
+                                    if (pageTag.Id == tag.Id && !result.Contains(page))
+                                    {
+                                        result.Add(page);
+                                    }
+                                }
+
                         }
                     }
-
                     break;
                 default:
                     result = new List<NoteBookPage>();
@@ -277,11 +281,11 @@ namespace NilNote.Core
             {
                 case NoteBookDateSearchMode.DateOfCreation:
                     result = pageCollection.Find(x =>
-                        (x.DateOfCreation.Date >= startDate.Date && x.DateOfCreation.Date <= endDate)).ToList();
+                        (x.DateOfCreation.Date >= startDate.Date && x.DateOfCreation.Date <= endDate.Date)).ToList();
                     break;
                 case NoteBookDateSearchMode.DateOfLastEdit:
                     result = pageCollection.Find(x =>
-                        (x.DateOfLastModification.Date >= startDate.Date && x.DateOfLastModification.Date <= endDate)).ToList();
+                        (x.DateOfLastModification.Date >= startDate.Date && x.DateOfLastModification.Date <= endDate.Date)).ToList();
                     break;
                 default:
                     result = new List<NoteBookPage>();

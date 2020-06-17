@@ -30,19 +30,25 @@ namespace NilNote.UI
         public DateSearchWindow()
         {
             InitializeComponent();
+            ComboBox.ItemsSource = Enum.GetValues(typeof(NoteBookDateSearchMode)).Cast<NoteBookDateSearchMode>();
+            ComboBox.SelectedIndex = 0;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            ComboBox.ItemsSource = Enum.GetValues(typeof(NoteBookDateSearchMode)).Cast<NoteBookDateSearchMode>();
-            ComboBox.SelectedIndex = 0;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            StartDate = DatePickerForStart.DisplayDate;
-            EndDate = DatePickerForEnd.DisplayDate;
+            if (DatePickerForStart.SelectedDate != null)
+            {
+                StartDate = (DateTime)DatePickerForStart.SelectedDate;
+            }
+            if (DatePickerForEnd.SelectedDate != null)
+            {
+                EndDate = (DateTime)DatePickerForEnd.SelectedDate;
+            }
             if ((NoteBookDateSearchMode)ComboBox.SelectedItem == NoteBookDateSearchMode.DateOfCreation)
             {
                 FindByDateOfCreation = true;

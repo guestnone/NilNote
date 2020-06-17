@@ -1,6 +1,7 @@
 ﻿using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace NilNote.Core
 {
@@ -22,13 +23,17 @@ namespace NilNote.Core
 
 	public enum NoteBookPageMarkupType
     {
+        [Description("Plain Text")]
         PlainText,
+        [Description("Markdown")]
         Markdown
     }
 
     public enum NoteBookExportFormat
     {
+        [Description("HTML")]
         HTML,
+        [Description("Plain Text")]
         PlainText
     }
 
@@ -40,7 +45,9 @@ namespace NilNote.Core
 
     public enum NoteBookDateSearchMode
     {
+        [Description("Date of creation")]
         DateOfCreation,
+        [Description("Date of last editing")]
         DateOfLastEdit
     }
 

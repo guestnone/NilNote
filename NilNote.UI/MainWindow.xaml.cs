@@ -40,6 +40,10 @@ namespace NilNote.UI
             "DateSearchCommand",
             typeof(MainWindow));
 
+        public static RoutedUICommand ExitCommand = new RoutedUICommand("Exit command",
+            "ExitCommand",
+            typeof(MainWindow));
+
         public MainWindow()
         {
             InitializeComponent();
@@ -199,5 +203,11 @@ namespace NilNote.UI
                 srv.Show();
             }
         }
+
+        private void ExitCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

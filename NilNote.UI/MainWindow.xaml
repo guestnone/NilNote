@@ -13,6 +13,7 @@
         <CommandBinding Command="{x:Static local:MainWindow.ExportCommand}" CanExecute="AlwaysExecuteDetector" Executed="ExportCommand_Executed" />
         <CommandBinding Command="{x:Static local:MainWindow.TextSearchCommand}" CanExecute="AlwaysExecuteDetector" Executed="TextSearchCommand_Executed" />
         <CommandBinding Command="{x:Static local:MainWindow.DateSearchCommand}" CanExecute="AlwaysExecuteDetector" Executed="DateSearchCommand_Executed" />
+        <CommandBinding Command="{x:Static local:MainWindow.ExitCommand}" CanExecute="AlwaysExecuteDetector" Executed="ExitCommand_Executed"/>
     </Window.CommandBindings>
 
     <Grid>
@@ -23,9 +24,7 @@
         </Grid.RowDefinitions>
         <Menu DockPanel.Dock="Top" Height="18" Grid.Row="0">
             <MenuItem Header="_File">
-                <MenuItem Header="Open notebook..."></MenuItem>
-                <Separator />
-                <MenuItem Header="Exit"></MenuItem>
+                <MenuItem Header="Exit" Command="{x:Static local:MainWindow.ExitCommand}"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Notebook">
                 <MenuItem Header="Search...">

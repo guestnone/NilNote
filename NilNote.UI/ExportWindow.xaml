@@ -27,7 +27,7 @@
         <CheckBox x:Name="ExportAllCheckBox" Grid.Row="1" Grid.Column="1" Margin="5" Checked="ExportAllCheckBox_Checked" Unchecked="ExportAllCheckBox_Checked"></CheckBox>
         <Label Content="Pages to Export" Grid.Row="2" Grid.Column="0"></Label>
 
-        <ListBox Name="PagesListBox" Grid.Row="2" Grid.Column="2" Margin="10,0,10,10" SelectionMode="Single">
+        <ListBox Name="PagesListBox" Grid.Row="2" Grid.Column="2" Margin="10,0,10,10" SelectionMode="Multiple">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NilNote.UI"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="SelectTagWindow" Height="450" Width="800">
+        Title="Select Tags" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
