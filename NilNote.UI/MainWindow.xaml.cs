@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.WindowsAPICodePack.Shell.Interop;
 using NilNote.Core;
 
 namespace NilNote.UI
@@ -209,5 +210,20 @@ namespace NilNote.UI
             this.Close();
         }
 
+        private void RemovePageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PagesListBox.SelectedItem != null)
+            {
+                if (MessageBox.Show("Dou you want to remove the page?", "Warning", MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                {
+                    var page = (NoteBookPage)PagesListBox.SelectedItem;
+                    PagesListBox.SelectedIndex = -1;
+                    NoteBookManager.Instance.RemovePage(page);
+                    PagesListBox.ItemsSource = NoteBookManager.Instance.GetPages();
+                    ProgramState.Text = "Page deleted";
+                }
+            }
+        }
     }
 }

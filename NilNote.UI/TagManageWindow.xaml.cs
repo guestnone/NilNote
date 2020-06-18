@@ -51,6 +51,7 @@ namespace NilNote.UI
                 MessageBox.Show("Error on adding tag!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             TagsListBox.ItemsSource = NoteBookManager.Instance.GetTags();
+            NewTagTextBox.Text = "";
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +92,8 @@ namespace NilNote.UI
                     return;
                 }
                 NoteBookManager.Instance.UpdateTag(tag);
+                TagsListBox.SelectedIndex = -1;
+                TagsListBox.ItemsSource = NoteBookManager.Instance.GetTags();
             }
         }
     }

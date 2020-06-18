@@ -21,11 +21,11 @@ namespace NilNote.Core
             get => mHasExistingDb;
         }
 
-        private void InsertFirstTimeUserPages(Language lang)
+        private void InsertFirstTimeUserPages(Language lang, NoteBookPageMarkupType markup)
         {
             NoteBookPage page = new NoteBookPage();
             page.BookPath = "";
-            page.MarkupType = NoteBookPageMarkupType.PlainText;
+            page.MarkupType = markup;
             page.DateOfCreation = DateTime.Now;
             page.DateOfLastModification = DateTime.Now;
             page.Text = StaticStuff.GetStartText();
@@ -74,7 +74,7 @@ namespace NilNote.Core
 
             var nbDetailsCollection = mDatabase.GetCollection<NoteBookDetails>(NotebookDbNames.NBDetailsCollectionName);
             nbDetailsCollection.Insert(details);
-            InsertFirstTimeUserPages(details.DefaultLanguage);
+            InsertFirstTimeUserPages(details.DefaultLanguage, details.DefaultMarkupType);
         }
 
         public bool InsertNewPage(NoteBookPage page)
@@ -293,6 +293,11 @@ namespace NilNote.Core
             }
 
             return result;
+        }
+
+        public bool RemovePage(NoteBookPage page)
+        {
+            return mDatabase.GetCollection<NoteBookPage>(NotebookDbNames.NBPagesCollectionName).Delete(page.Id);
         }
     }
 }
